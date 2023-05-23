@@ -1,0 +1,10 @@
+---
+key: "Meural2_proxy-1.0.0"
+name : "Meural2"
+displayName : "Meural2"
+description: "Sample Proxy Service"
+version: "1.0.0"
+serviceUrl: "https://{MI_HOST}:{MI_PORT}/services/Meural2"
+definitionType: "WSDL1"
+securityType: "BASIC"
+mutualSSLEnabled: false

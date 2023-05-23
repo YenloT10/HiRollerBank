@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy name="Meural4" startOnLoad="true" transports="http https" xmlns="http://ws.apache.org/ns/synapse">
+    <target>
+        <inSequence>
+            <property name="objectnr" scope="default" type="STRING" value="SK-A-2860"/>
+            <property expression="fn:concat('https://www.rijksmuseum.nl/api/en/collection/SK-A-2860','?key=Z6sfcxEM')" name="uri.var.test" scope="default" type="STRING"/>
+            <call>
+                <endpoint name="RM">
+                    <http method="get" uri-template="{uri.var.test}">
+                        <suspendOnFailure>
+                            <initialDuration>-1</initialDuration>
+                            <progressionFactor>1</progressionFactor>
+                        </suspendOnFailure>
+                        <markForSuspension>
+                            <retriesBeforeSuspension>0</retriesBeforeSuspension>
+                        </markForSuspension>
+                    </http>
+                </endpoint>
+            </call>
+            <property name="uri.var.imageurl" scope="default" type="STRING" value="https://lh3.googleusercontent.com/N-coqwrkCI2zYd6nTtGEpLPwB4nOKJVxcXmCCKg0WrcEp4gDj44NdWZy_DoI5yPrWzTX7qZQrc9I1UlB-zBdMNrZWLYh4A1FtX1eimZ5=s0"/>
+            <call>
+                <endpoint name="WI">
+                    <http method="get" uri-template="{uri.var.imageurl}">
+                        <timeout>
+                            <duration>300000</duration>
+                        </timeout>
+                        <suspendOnFailure>
+                            <initialDuration>-1</initialDuration>
+                            <progressionFactor>1</progressionFactor>
+                        </suspendOnFailure>
+                        <markForSuspension>
+                            <retriesBeforeSuspension>0</retriesBeforeSuspension>
+                        </markForSuspension>
+                    </http>
+                </endpoint>
+            </call>
+            <property expression="fn:concat('/opt/wso2/Downloads/',get-property('objectnr'),'.jpg')" name="fp" scope="default" type="STRING"/>
+            <enrich>
+                <source clone="false" type="body"/>
+                <target property="ORIGINAL_PAYLOAD" type="property"/>
+            </enrich>
+            <file.write configKey="FC1">
+                <filePath>{$ctx:fp}</filePath>
+                <mimeType>Automatic</mimeType>
+                <compress>false</compress>
+                <writeMode>Overwrite</writeMode>
+                <enableStreaming>false</enableStreaming>
+                <appendNewLine>false</appendNewLine>
+                <enableLock>false</enableLock>
+                <includeResultTo>Message Body</includeResultTo>
+                <updateLastModified>true</updateLastModified>
+            </file.write>
+            <enrich>
+                <source clone="false" property="ORIGINAL_PAYLOAD" type="property"/>
+                <target type="body"/>
+            </enrich>
+            <property name="DECODE_MULTIPART_DATA" scope="axis2" type="BOOLEAN" value="true"/>
+            <property expression="//ns:binary" name="Message" scope="default" type="STRING" xmlns:ns="http://ws.apache.org/commons/ns/payload"/>
+            <payloadFactory media-type="xml">
+                <format>
+                    <root xmlns="">
+                        <file Content-Type="image/jpeg" filename="$1" name="image" xmlns="http://org.apache.axis2/xsd/form-data">$2</file>
+                    </root>
+                </format>
+                <args>
+                    <arg evaluator="xml" expression="$ctx:fp"/>
+                    <arg evaluator="xml" expression="get-property('Message')"/>
+                </args>
+            </payloadFactory>
+            <property name="messageType" scope="axis2" type="STRING" value="multipart/form-data"/>
+            <header name="Content-Type" scope="transport" value="multipart/form-data"/>
+            <!--  -->
+            <property name="DISABLE_CHUNKING" scope="axis2" type="STRING" value="true"/>
+            <header name="Authorization" scope="transport" value="Token 2_5IWxZq0OX2QOoOcUtCNY3UPM0C9YWxhnojXzhtRt-ef_tFCmkiH10DKfVJy7KhZ6jjsaPpWDM5Ing7g3OKiPEWKvrcPOWEe4mb95Dgeqr3yx-5GeEYF1nz5m5NFc9SIxfywRw3xoUgf3GwhZwVcUXEj3yTZhVCS1ikhC9WSsLwkg"/>
+            <!--  -->
+            <!--  -->
+            <!--  -->
+            <call>
+                <endpoint>
+                    <http method="post" uri-template="https://api.meural.com/v0/items">
+                        <suspendOnFailure>
+                            <initialDuration>-1</initialDuration>
+                            <progressionFactor>-1</progressionFactor>
+                            <maximumDuration>0</maximumDuration>
+                        </suspendOnFailure>
+                        <markForSuspension>
+                            <retriesBeforeSuspension>0</retriesBeforeSuspension>
+                        </markForSuspension>
+                    </http>
+                </endpoint>
+            </call>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </target>
+</proxy>

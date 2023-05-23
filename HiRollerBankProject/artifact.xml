@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?><artifacts>
+    <artifact name="HiRollerBankAccountWS" groupId="com.yenlo.training.HiRollerBankProject.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/HiRollerBankAccountWS.xml</file>
+    </artifact>
+    <artifact name="AccountProxy" groupId="com.yenlo.training.HiRollerBankProject.proxy-service" version="1.0.0" type="synapse/proxy-service" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/proxy-services/AccountProxy.xml</file>
+    </artifact>
+    <artifact name="AccountProxy_proxy_metadata" groupId="com.yenlo.training.HiRollerBankProject.metadata" version="1.0.0" type="synapse/metadata" serverRole="EnterpriseServiceBus">
+        <file>src/main/resources/metadata/AccountProxy_proxy_metadata.yaml</file>
+    </artifact>
+    <artifact name="AccountProxySW" groupId="com.yenlo.training.HiRollerBankProject.proxy-service" version="1.0.0" type="synapse/proxy-service" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/proxy-services/AccountProxySW.xml</file>
+    </artifact>
+    <artifact name="AccountProxySW_proxy_metadata" groupId="com.yenlo.training.HiRollerBankProject.metadata" version="1.0.0" type="synapse/metadata" serverRole="EnterpriseServiceBus">
+        <file>src/main/resources/metadata/AccountProxySW_proxy_metadata.yaml</file>
+    </artifact>
+    <artifact name="Meural" groupId="com.yenlo.training.HiRollerBankProject.proxy-service" version="1.0.0" type="synapse/proxy-service" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/proxy-services/Meural.xml</file>
+    </artifact>
+    <artifact name="Meural_proxy_metadata" groupId="com.yenlo.training.HiRollerBankProject.metadata" version="1.0.0" type="synapse/metadata" serverRole="EnterpriseServiceBus">
+        <file>src/main/resources/metadata/Meural_proxy_metadata.yaml</file>
+    </artifact>
+    <artifact name="FC1" groupId="com.yenlo.training.HiRollerBankProject.local-entry" version="1.0.0" type="synapse/local-entry" serverRole="EnterpriseServiceBus">
+        <file>/src/main/synapse-config/local-entries/FC1.xml</file>
+    </artifact>
+    <artifact name="Meural2" groupId="com.yenlo.training.HiRollerBankProject.proxy-service" version="1.0.0" type="synapse/proxy-service" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/proxy-services/Meural2.xml</file>
+    </artifact>
+    <artifact name="Meural2_proxy_metadata" groupId="com.yenlo.training.HiRollerBankProject.metadata" version="1.0.0" type="synapse/metadata" serverRole="EnterpriseServiceBus">
+        <file>src/main/resources/metadata/Meural2_proxy_metadata.yaml</file>
+    </artifact>
+    <artifact name="Meural3" groupId="com.yenlo.training.HiRollerBankProject.proxy-service" version="1.0.0" type="synapse/proxy-service" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/proxy-services/Meural3.xml</file>
+    </artifact>
+    <artifact name="Meural3_proxy_metadata" groupId="com.yenlo.training.HiRollerBankProject.metadata" version="1.0.0" type="synapse/metadata" serverRole="EnterpriseServiceBus">
+        <file>src/main/resources/metadata/Meural3_proxy_metadata.yaml</file>
+    </artifact>
+    <artifact name="Meural4" groupId="com.yenlo.training.HiRollerBankProject.proxy-service" version="1.0.0" type="synapse/proxy-service" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/proxy-services/Meural4.xml</file>
+    </artifact>
+    <artifact name="Meural4_proxy_metadata" groupId="com.yenlo.training.HiRollerBankProject.metadata" version="1.0.0" type="synapse/metadata" serverRole="EnterpriseServiceBus">
+        <file>src/main/resources/metadata/Meural4_proxy_metadata.yaml</file>
+    </artifact>
+    <artifact name="MeuralProxy" groupId="com.yenlo.training.HiRollerBankProject.proxy-service" version="1.0.0" type="synapse/proxy-service" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/proxy-services/MeuralProxy.xml</file>
+    </artifact>
+    <artifact name="MeuralProxy_proxy_metadata" groupId="com.yenlo.training.HiRollerBankProject.metadata" version="1.0.0" type="synapse/metadata" serverRole="EnterpriseServiceBus">
+        <file>src/main/resources/metadata/MeuralProxy_proxy_metadata.yaml</file>
+    </artifact>
+    <artifact name="MeuralProxy2" groupId="com.yenlo.training.HiRollerBankProject.proxy-service" version="1.0.0" type="synapse/proxy-service" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/proxy-services/MeuralProxy2.xml</file>
+    </artifact>
+    <artifact name="MeuralProxy2_proxy_metadata" groupId="com.yenlo.training.HiRollerBankProject.metadata" version="1.0.0" type="synapse/metadata" serverRole="EnterpriseServiceBus">
+        <file>src/main/resources/metadata/MeuralProxy2_proxy_metadata.yaml</file>
+    </artifact>
+    <artifact name="AccountProxyNF" groupId="com.yenlo.training.HiRollerBankProject.proxy-service" version="1.0.0" type="synapse/proxy-service" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/proxy-services/AccountProxyNF.xml</file>
+    </artifact>
+    <artifact name="AccountProxyNF_proxy_metadata" groupId="com.yenlo.training.HiRollerBankProject.metadata" version="1.0.0" type="synapse/metadata" serverRole="EnterpriseServiceBus">
+        <file>src/main/resources/metadata/AccountProxyNF_proxy_metadata.yaml</file>
+    </artifact>
+    <artifact name="HiRollerBankGEO_LOCATION" groupId="com.yenlo.training.HiRollerBankProject.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/HiRollerBankGEO_LOCATION.xml</file>
+    </artifact>
+    <artifact name="HiRollerBankATM_LOCATOR" groupId="com.yenlo.training.HiRollerBankProject.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/HiRollerBankATM_LOCATOR.xml</file>
+    </artifact>
+    <artifact name="CallMediatorProxy" groupId="com.yenlo.training.HiRollerBankProject.proxy-service" version="1.0.0" type="synapse/proxy-service" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/proxy-services/CallMediatorProxy.xml</file>
+    </artifact>
+    <artifact name="CallMediatorProxy_proxy_metadata" groupId="com.yenlo.training.HiRollerBankProject.metadata" version="1.0.0" type="synapse/metadata" serverRole="EnterpriseServiceBus">
+        <file>src/main/resources/metadata/CallMediatorProxy_proxy_metadata.yaml</file>
+    </artifact>
+    <artifact name="echo" groupId="com.yenlo.training.HiRollerBankProject.proxy-service" version="1.0.0" type="synapse/proxy-service" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/proxy-services/echo.xml</file>
+    </artifact>
+    <artifact name="echo_proxy_metadata" groupId="com.yenlo.training.HiRollerBankProject.metadata" version="1.0.0" type="synapse/metadata" serverRole="EnterpriseServiceBus">
+        <file>src/main/resources/metadata/echo_proxy_metadata.yaml</file>
+    </artifact>
+    <artifact name="EchoMessageStore" groupId="com.yenlo.training.HiRollerBankProject.message-store" version="1.0.0" type="synapse/message-store" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/message-stores/EchoMessageStore.xml</file>
+    </artifact>
+    <artifact name="MessageStoreProxy" groupId="com.yenlo.training.HiRollerBankProject.proxy-service" version="1.0.0" type="synapse/proxy-service" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/proxy-services/MessageStoreProxy.xml</file>
+    </artifact>
+    <artifact name="MessageStoreProxy_proxy_metadata" groupId="com.yenlo.training.HiRollerBankProject.metadata" version="1.0.0" type="synapse/metadata" serverRole="EnterpriseServiceBus">
+        <file>src/main/resources/metadata/MessageStoreProxy_proxy_metadata.yaml</file>
+    </artifact>
+    <artifact name="EchoEndpoint" groupId="com.yenlo.training.HiRollerBankProject.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/EchoEndpoint.xml</file>
+    </artifact>
+    <artifact name="LogSequence" groupId="com.yenlo.training.HiRollerBankProject.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/LogSequence.xml</file>
+    </artifact>
+    <artifact name="EchoMessageProcessor" groupId="com.yenlo.training.HiRollerBankProject.message-processors" version="1.0.0" type="synapse/message-processors" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/message-processors/EchoMessageProcessor.xml</file>
+    </artifact>
+    <artifact name="My" groupId="com.yenlo.training.HiRollerBankProject.task" version="1.0.0" type="synapse/task" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/tasks/My.xml</file>
+    </artifact>
+</artifacts>

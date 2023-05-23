@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy name="AccountProxySW" startOnLoad="true" transports="http https" xmlns="http://ws.apache.org/ns/synapse">
+    <target>
+        <endpoint key="HiRollerBankAccountWS"/>
+        <inSequence>
+            <switch source="fn:count(//*[local-name()='checkBalance'])">
+                <case regex="1.0">
+                    <log level="custom">
+                        <property name="Status" value="CHK Balance Request"/>
+                    </log>
+                </case>
+                <default>
+                    <log level="custom">
+                        <property name="Status" value="SAV Balance Request"/>
+                    </log>
+                </default>
+            </switch>
+        </inSequence>
+        <outSequence>
+            <send/>
+        </outSequence>
+        <faultSequence/>
+    </target>
+</proxy>

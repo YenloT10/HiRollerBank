@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy name="Meural3" startOnLoad="true" transports="http https" xmlns="http://ws.apache.org/ns/synapse">
+    <target>
+        <inSequence>
+            <iterate expression="//retrieve/object" id="it1" sequential="true">
+                <target>
+                    <sequence>
+                        <log level="custom">
+                            <property expression="//object" name="objectnr"/>
+                        </log>
+                        <property expression="//object" name="objectnr" scope="default" type="STRING"/>
+                        <property expression="fn:concat('https://www.rijksmuseum.nl/api/en/collection/',//object,'?key=Z6sfcxEM')" name="uri.var.test" scope="default" type="STRING"/>
+                        <log level="custom">
+                            <property name="before 1st call " value="before 1st call =========="/>
+                        </log>
+                        <call>
+                            <endpoint name="RM">
+                                <http method="get" uri-template="{uri.var.test}">
+                                    <suspendOnFailure>
+                                        <initialDuration>-1</initialDuration>
+                                        <progressionFactor>1</progressionFactor>
+                                    </suspendOnFailure>
+                                    <markForSuspension>
+                                        <retriesBeforeSuspension>0</retriesBeforeSuspension>
+                                    </markForSuspension>
+                                </http>
+                            </endpoint>
+                        </call>
+                        <log level="custom">
+                            <property name="after 1st" value="aftyer 1st ====="/>
+                        </log>
+                        <property expression="//artObject/webImage/url" name="uri.var.imageurl" scope="default" type="STRING"/>
+                        <log>
+                            <property name="defore 2nd" value="defore 2nd ======"/>
+                        </log>
+                        <call>
+                            <endpoint name="WI">
+                                <http method="get" uri-template="{uri.var.imageurl}">
+                                    <timeout>
+                                        <duration>300000</duration>
+                                    </timeout>
+                                    <suspendOnFailure>
+                                        <initialDuration>-1</initialDuration>
+                                        <progressionFactor>1</progressionFactor>
+                                    </suspendOnFailure>
+                                    <markForSuspension>
+                                        <retriesBeforeSuspension>0</retriesBeforeSuspension>
+                                    </markForSuspension>
+                                </http>
+                            </endpoint>
+                        </call>
+                        <!-- Object wat je uit bovenstaande call haalt moet in de payload mijn inziens, even loggen hoe deze eruit rollt en dan met xpath of iets dergeli -->
+                        <log level="custom">
+                            <property name="after 2nd" value="after 2nd======="/>
+                        </log>
+                        <property expression="fn:concat('/opt/wso2/Downloads/',get-property('objectnr'),'.jpg')" name="fp" scope="default" type="STRING"/>
+                        <property name="messageType" scope="axis2" type="STRING" value="multiform/form-data"/>
+                        <log level="custom">
+                            <property name="before payload" value="before payload ======="/>
+                            <property expression="fn:concat('/opt/wso2/Downloads/',get-property('objectnr'),'.jpg')" name="fp"/>
+                        </log>
+                        <property expression="get-property('MessageID')" name="msgID" scope="default" type="STRING"/>
+                        <log level="custom">
+                            <property expression="get-property('transport', 'Host')" name="Host"/>
+                            <property expression="get-property('To')" name="Context"/>
+                            <property expression="get-property('axis2', 'HTTP_METHOD')" name="Http_Method"/>
+                            <property expression="get-property('axis2', 'REST_URL_POSTFIX')" name="Resource"/>
+                            <property expression="get-property('transport', 'Origin')" name="Origin"/>
+                            <property expression="get-property('transport', 'Content-Type')" name="Content-Type"/>
+                            <property expression="get-property('msgID')" name="Message_Id"/>
+                        </log>
+                        <payloadFactory media-type="xml">
+                            <format>
+                                <root xmlns="">
+                                    <file content-type="image/jpeg" filename="$1" name="image" xmlns="http://org.apache.axis2/xsd/form-data"/>
+                                </root>
+                            </format>
+                            <args>
+                                <arg evaluator="xml" expression="$ctx:fp"/>
+                            </args>
+                        </payloadFactory>
+                        <property name="DECODE_MULTIPART_DATA" scope="axis2" type="BOOLEAN" value="true"/>
+                        <property name="DISABLE_CHUNKING" scope="axis2" type="STRING" value="true"/>
+                        <header name="Authorization" scope="transport" value="Token 2_5IWxZq0OX2QOoOcUtCNY3UPM0C9YWxhnojXzhtRt-ef_tFCmkiH10DKfVJy7KhZ6jjsaPpWDM5Ing7g3OKiPEWKvrcPOWEe4mb95Dgeqr3yx-5GeEYF1nz5m5NFc9SIxfywRw3xoUgf3GwhZwVcUXEj3yTZhVCS1ikhC9WSsLwkg"/>
+                        <log level="custom">
+                            <property name="defore 3rd" value="defore 3rd ======"/>
+                        </log>
+                        <property name="messageType" scope="axis2" type="STRING" value="multipart/form-data"/>
+                        <header name="Content-Type" scope="transport" value="multipart/form-data"/>
+                        <property expression="get-property('MessageID')" name="msgID" scope="default" type="STRING"/>
+                        <log level="custom">
+                            <property expression="get-property('transport', 'Host')" name="Host"/>
+                            <property expression="get-property('To')" name="Context"/>
+                            <property expression="get-property('axis2', 'HTTP_METHOD')" name="Http_Method"/>
+                            <property expression="get-property('axis2', 'REST_URL_POSTFIX')" name="Resource"/>
+                            <property expression="get-property('transport', 'Origin')" name="Origin"/>
+                            <property expression="get-property('transport', 'Content-Type')" name="Content-Type"/>
+                            <property expression="get-property('msgID')" name="Message_Id"/>
+                        </log>
+                        <call>
+                            <endpoint>
+                                <http method="post" uri-template="https://api.meural.com/v0/items">
+                                    <suspendOnFailure>
+                                        <initialDuration>-1</initialDuration>
+                                        <progressionFactor>-1</progressionFactor>
+                                        <maximumDuration>0</maximumDuration>
+                                    </suspendOnFailure>
+                                    <markForSuspension>
+                                        <retriesBeforeSuspension>0</retriesBeforeSuspension>
+                                    </markForSuspension>
+                                </http>
+                            </endpoint>
+                        </call>
+                    </sequence>
+                </target>
+            </iterate>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </target>
+</proxy>
